@@ -26,24 +26,6 @@ class MainWidget:
         self.settings_widget = SettingsWidget()
         settings_layout.addWidget(self.settings_widget)
         
-        # --- Toolbar Section ---
-        self.toolbar_box = ctk.ctkCollapsibleButton()
-        self.toolbar_box.text = "Radiology Tools"
-        self.layout.addWidget(self.toolbar_box)
-        tb_layout = qt.QVBoxLayout(self.toolbar_box)
-        self.toolbar_widget = ToolbarWidget()
-        tb_layout.addWidget(self.toolbar_widget)
-
-
-
-        # --- Viewer Settings ---
-        self.viewer_box = ctk.ctkCollapsibleButton()
-        self.viewer_box.text = "Viewport Settings"
-        self.layout.addWidget(self.viewer_box)
-        viewer_layout = qt.QVBoxLayout(self.viewer_box)
-        self.viewer_widget = ViewerWidget()
-        viewer_layout.addWidget(self.viewer_widget)
-        
         # --- Segmentation Actions (to be populated by services) ---
         self.seg_box = ctk.ctkCollapsibleButton()
         self.seg_box.text = "Segmentation Workflow"

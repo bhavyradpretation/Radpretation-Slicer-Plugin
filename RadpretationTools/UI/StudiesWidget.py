@@ -31,7 +31,7 @@ class StudiesWidget(qt.QWidget):
         # Studies Table
         self.table = qt.QTableWidget()
         self.table.setColumnCount(4)
-        self.table.setHorizontalHeaderLabels(["Patient Name", "Modality", "Date", "Description"])
+        self.table.setHorizontalHeaderLabels(["Patient Name", "Modality", "Date", "Current Reviewer"])
         self.table.setSelectionBehavior(qt.QAbstractItemView.SelectRows)
         self.table.setSelectionMode(qt.QAbstractItemView.SingleSelection)
         self.table.setEditTriggers(qt.QAbstractItemView.NoEditTriggers)
@@ -78,7 +78,7 @@ class StudiesWidget(qt.QWidget):
             date_str = study.study_date.split("T")[0] if "T" in study.study_date else study.study_date
             self.table.setItem(i, 2, qt.QTableWidgetItem(date_str))
             
-            self.table.setItem(i, 3, qt.QTableWidgetItem(study.study_description))
+            self.table.setItem(i, 3, qt.QTableWidgetItem(study.currentReviewer))
 
     def on_study_double_clicked(self, row, col):
         self.load_study_at_row(row)

@@ -70,6 +70,15 @@ class APIService:
                 for item in items:
                     patient_info = item.get("patient", {})
                     report_info = item.get("report", {})
+
+                    current_reviewer_list = report_info.get("currentReviewer", [])
+                    current_reviewer = ""
+                    if current_reviewer_list and isinstance(current_reviewer_list, list):
+                        reviewer = current_reviewer_list[0]
+                        first_name = reviewer.get("firstName", "")
+                        last_name = reviewer.get("lastName", "")
+
+                        current_reviewer = f"{first_name} {last_name}".strip()
                     
                     patient_name = f"{patient_info.get('firstName', '')} {patient_info.get('lastName', '')}".strip()
                     if not patient_name:
@@ -81,7 +90,7 @@ class APIService:
                         patient_id=patient_info.get("patientId", "Unknown"),
                         study_instance_uid=report_info.get("studyInstanceUID", ""),
                         study_date=item.get("createdAt", ""),
-                        study_description=item.get("testName", ""),
+                        currentReviewer=current_reviewer,
                         accession_number=item.get("refNumber", ""),
                         modalities=report_info.get("modality", "")
                     )
